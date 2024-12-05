@@ -1,0 +1,466 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Votre API Laravel",
+        "description": "La documentation de l'API pour votre application Laravel.",
+        "contact": {
+            "email": "contact@example.com"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "/api"
+        }
+    ],
+    "paths": {
+        "/etudiants/enregistrer": {
+            "post": {
+                "tags": [
+                    "Étudiants"
+                ],
+                "summary": "Enregistrer un étudiant",
+                "operationId": "f1cfdc767db9b8c05906e24896f8cbb5",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "etudiant",
+                                    "parents"
+                                ],
+                                "properties": {
+                                    "etudiant": {
+                                        "properties": {
+                                            "nom": {
+                                                "type": "string",
+                                                "example": "Doe"
+                                            },
+                                            "prenom": {
+                                                "type": "string",
+                                                "example": "John"
+                                            },
+                                            "adresse": {
+                                                "type": "string",
+                                                "format": "email",
+                                                "example": "johndoe@example.com"
+                                            },
+                                            "num_tel": {
+                                                "type": "string",
+                                                "example": "1234567890"
+                                            },
+                                            "quartier": {
+                                                "type": "string",
+                                                "example": "Downtown"
+                                            },
+                                            "date_naissance": {
+                                                "type": "string",
+                                                "format": "date",
+                                                "example": "2000-01-01"
+                                            },
+                                            "série": {
+                                                "type": "string",
+                                                "example": "A"
+                                            },
+                                            "niveau_academique": {
+                                                "type": "string",
+                                                "example": "Licence"
+                                            }
+                                        },
+                                        "type": "object"
+                                    },
+                                    "parents": {
+                                        "properties": {
+                                            "full_name": {
+                                                "type": "string",
+                                                "example": "Jane Doe"
+                                            },
+                                            "occupation": {
+                                                "type": "string",
+                                                "example": "Doctor"
+                                            },
+                                            "num_tel": {
+                                                "type": "string",
+                                                "example": "0987654321"
+                                            },
+                                            "addresse": {
+                                                "type": "string",
+                                                "format": "email",
+                                                "example": "janedoe@example.com"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Étudiant enregistré avec succès",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Étudiant enregistré avec succès"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Validation des données échouée",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Les données envoyées ne sont pas valides."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Erreur serveur",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Erreur lors de la création de l'étudiant"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/etudiants/tous": {
+            "get": {
+                "tags": [
+                    "Étudiants"
+                ],
+                "summary": "Récupérer tous les étudiants",
+                "operationId": "3595ffe7bb54e2e33e702296a924429b",
+                "responses": {
+                    "200": {
+                        "description": "Liste des étudiants",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Erreur serveur",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Erreur inconnue survenue"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/etudiants/mettre-a-jour": {
+            "put": {
+                "tags": [
+                    "Étudiants"
+                ],
+                "summary": "Mettre à jour un étudiant",
+                "operationId": "83405b758d73649e7c3a9aaccbaef898",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID de l'étudiant",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "email",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "John Doe"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "john.doe@example.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "example": "password123"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Étudiant mis à jour avec succès",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Étudiant mis à jour avec succès"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Erreur serveur",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Erreur inconnue survenue"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/etudiants/par-email": {
+            "post": {
+                "tags": [
+                    "Étudiants"
+                ],
+                "summary": "Trouver un étudiant par email",
+                "operationId": "b01d5d47cbfd102be82d9312cc26ae55",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "email"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "johndoe@example.com"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Étudiant trouvé avec succès",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "nom": {
+                                            "type": "string",
+                                            "example": "Doe"
+                                        },
+                                        "prenom": {
+                                            "type": "string",
+                                            "example": "John"
+                                        },
+                                        "adresse": {
+                                            "type": "string",
+                                            "example": "johndoe@example.com"
+                                        },
+                                        "num_tel": {
+                                            "type": "string",
+                                            "example": "1234567890"
+                                        },
+                                        "quartier": {
+                                            "type": "string",
+                                            "example": "Downtown"
+                                        },
+                                        "date_naissance": {
+                                            "type": "string",
+                                            "format": "date",
+                                            "example": "2000-01-01"
+                                        },
+                                        "série": {
+                                            "type": "string",
+                                            "example": "A"
+                                        },
+                                        "niveau_academique": {
+                                            "type": "string",
+                                            "example": "Licence"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "L'email est requis ou invalide",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Entrer une adresse email valide !"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Étudiant non trouvé",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Aucun étudiant trouvé avec cet email."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Erreur serveur",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Erreur lors de la recherche de l'étudiant"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/etudiants/supprimer": {
+            "delete": {
+                "tags": [
+                    "Étudiants"
+                ],
+                "summary": "Supprimer un étudiant",
+                "operationId": "85cad7a5648fa1e0adf4d12f5770fdd4",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID de l'étudiant",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Étudiant supprimé avec succès",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Étudiant supprimé avec succès"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Erreur serveur",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Erreur inconnue survenue"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Étudiants",
+            "description": "Étudiants"
+        }
+    ]
+}
