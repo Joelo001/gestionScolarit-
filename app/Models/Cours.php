@@ -9,6 +9,7 @@ class Cours extends Model
 {
     use HasFactory;
     protected $fillable = ['nom', 'description', 'horaire', 'enseignant_id'];
+    protected $hidden = ['created_at','updated_at','enseignant_id'];
 
     public function enseignant()
     {

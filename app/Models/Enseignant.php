@@ -17,6 +17,7 @@ class Enseignant extends Model
 
     ];
     protected $guarded =['id'];
+    protected $hidden = ['created_at','updated_at','departement_id','enseignant_id'];
 
     public function departement(){
         return $this->hasOne(Departement::class);
